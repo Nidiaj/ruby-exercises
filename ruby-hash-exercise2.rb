@@ -8,7 +8,7 @@
 def get_books author
   books = @favorite_books[author]
   if books == nil
-    puts "No such author"
+    puts "No such author."
   else
     puts books.join ', '
   end
@@ -17,7 +17,7 @@ end
 def count_books author
   books = @favorite_books[author]
   if books == nil
-    puts "No such author"
+    puts "No such author."
   else
     puts books.length
   end
@@ -33,16 +33,33 @@ def find book
   if result
     puts result
   else
-    puts "No such book"
+    puts "No such book."
   end
 end
 
 def add_book author, title
 #TODO
+  books = @favorite_books[author]
+  if books == nil
+    @favorite_books[author] = [title]
+    puts "Book added."
+  else
+    @favorite_books[author] << title
+    puts "Book added."
+  end
 end
 
 def delete_book author, title
 #TODO
+  books = @favorite_books[author]
+  if books == nil
+    puts "Author not found."
+  elsif books.include? title
+      @favorite_books[author].delete(title)
+      puts "Book deleted."
+  else
+    puts "Book not found for author."
+  end
 end
 
 def handle_command command, arg
